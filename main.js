@@ -1,0 +1,1 @@
+tela = document.querySelector("#tela"); 
