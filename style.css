@@ -11,48 +11,84 @@ html, body {
 body {
     display: grid;
     align-items: center;
+    grid-template-areas: "faixa1 titulo1 faixa2" "faixa1 calculadora faixa2" "faixa1 titulo2 faixa2";
     grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto 1fr auto;
     justify-items: center;
 }
 
-#calculadora{
-    width: 280px;
-    background-color: #3d37e4;
-    border-radius: 30px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+h1 {
+    font-size: 15.4em;
+    margin: 0;
 }
 
-#tela{
+h1::before, h1::after {
+    content: '';
+    display: block;
+    height: 0;
+    width: 0;
+    margin: 0;
+}
+
+#titulo1 {
+    color: #f38d9954;
+    grid-area: titulo1;
+    justify-self: flex-start;
+}
+
+#titulo2 {
+    color: #f38d9954;
+    grid-area: titulo2;
+    justify-self: flex-end;
+}
+
+#calculadora {
+    align-items: center;
+    background-color: #65A1C4;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    grid-area: calculadora;
+    margin: 0;
+    padding: 20px;
+    width: 280px;
+}
+
+#tela {
     width: 100%;
-    height:75px;
-    background-color:#ffc2c9;
+    height: 75px;
+    background-color: #ffc2c9;
     border-radius: 10px;
 }
 
-#teclas{
+#teclas {
     list-style-type: "";
     display: flex;
-    flex-wrap:wrap;
-    padding:0;
+    flex-wrap: wrap;
+    padding: 0;
     justify-content: center;
     margin-bottom: 0;
     gap: 4px;
 }
 
-
-button{
+button {
     width: 56px;
     height: 56px;
-    font-size:24px;
-    border-radius:10px;
-    background: #e43344;
+    font-size: 28px;
+    border-radius: 10px;
+    background: #ed5564db;
 }
 
 .faixa {
-    background-color: #ee5665;
+    background-color: #f88a9795;
     align-self: stretch;
     justify-self: stretch;
+}
+
+#faixa1 {
+    grid-area: faixa1;
+}
+
+#faixa2 {
+    grid-area: faixa2;
 }
