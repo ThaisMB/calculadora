@@ -15,7 +15,7 @@ numeros.forEach(numero => {
              tela.innerHTML ="";
         }
 
-        if(contador==7){
+        if(contador==8){
             return
         }
         tela.innerHTML += numero.value;
@@ -62,7 +62,7 @@ function resolveOperacao(){
         resultado = n1/n2;  
     }
     resultado = resultado.toString();
-    if (resultado.length>9){
+    if (resultado.length>10){
         tela.classList.add("tela-erro");
         resultado =`E${resultado.substr(0,10)}` ;
     }
