@@ -26,6 +26,9 @@ numeros.forEach(numero => {
 
 operadores.forEach(operador => {
     operador.addEventListener("click", () => {
+        if (n1 == "" && resultado == "" && tela.innerHTML==""){
+            return
+        }
         if (operadoresDigitados.length >0 || resultado != ""){
             resolveOperacao();
             n1 = resultado;
