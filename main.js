@@ -10,10 +10,34 @@ let resultado = "";
 let n1 = "";
 let n2 = "";
 let contador = 0;
+let desligado = true;
 
 iniciar.addEventListener("click", () => {
+    //debugger;
     iniciarLigado = true;
+    desligado = false;
+    tela.classList.remove("tela-erro")
+    tela.classList.remove("tela-erro-muitos-numeros");
+    resultado = "";
+    n1=0;
+    n2= "";
+    contador=0;
+    numerosDigitados = [];
+    operadoresDigitados = [];
     tela.innerHTML = "0";
+})
+
+iniciar.addEventListener("dblclick", () => {
+    desligado = true;
+    tela.classList.remove("tela-erro")
+    tela.classList.remove("tela-erro-muitos-numeros");
+    resultado = "";
+    n1= "";
+    n2= "";
+    contador= 0;
+    numerosDigitados = [];
+    operadoresDigitados = [];
+    tela.innerHTML = "";
 })
 
 numeros.forEach(numero => {
@@ -22,11 +46,7 @@ numeros.forEach(numero => {
             tela.innerHTML = "";
         }
 
-        if (iniciarLigado== false && n1=="" && numerosDigitados.length==0){
-            return
-        }
-
-        if (contador == 8) {
+        if (iniciarLigado== false && n1=="" && numerosDigitados.length==0 || tela.className.includes("tela-erro") ||contador == 10){
             return
         }
 
@@ -39,11 +59,7 @@ numeros.forEach(numero => {
 
 operadores.forEach(operador => {
     operador.addEventListener("click", () => {
-        if (iniciarLigado == true) {
-            n1= 0;
-        }
-
-        if (n1 == "" && resultado == "" && tela.innerHTML == "") {
+        if (desligado == true || tela.className.includes("tela-erro")){
             return
         }
         if (operadoresDigitados.length > 0 || resultado != "") {
@@ -67,36 +83,44 @@ terminador.addEventListener("click", () => {
 })
 
 function resolveOperacao() {
-    for (let elemento of numerosDigitados) {
-        n2 += elemento;
-    }
-    n2 = parseFloat(n2);
-
-    if (operadoresDigitados.includes("+")) {
-        resultado = n1 + n2;
-    } else if (operadoresDigitados.includes("-")) {
-        resultado = n1 - n2;
-    } else if (operadoresDigitados.includes("x")) {
-        resultado = n1 * n2;
-    } else if (operadoresDigitados.includes("/")) {
-        resultado = n1 / n2;
-    } else if (operadoresDigitados.includes("root")) {
-        if (n1<0 && n2%2 == 0){
-            tela.classList.add("tela-erro")
-            tela.innerHTML = `ERROR`;
+    if (numerosDigitados.length==0){
+        resultado = n1;
+    } else{
+        for (let elemento of numerosDigitados) {
+            n2 += elemento;
         }
-        resultado = nthroot(n1, n2);
-    } else if (operadoresDigitados.includes("%")) {
-        resultado = (n1/100) * n2;
-    } else if (operadoresDigitados.includes("xy")) {
-        resultado = n1 ** n2;
+    
+        n2 = parseFloat(n2);
+    
+        if (operadoresDigitados.includes("+")) {
+            resultado = n1 + n2;
+        } else if (operadoresDigitados.includes("-")) {
+            resultado = n1 - n2;
+        } else if (operadoresDigitados.includes("x")) {
+            resultado = n1 * n2;
+        } else if (operadoresDigitados.includes("/")) {
+            resultado = n1 / n2;
+        } else if (operadoresDigitados.includes("root")) {
+            if (n1<0 && n2%2 == 0){
+                tela.classList.add("tela-erro")
+                tela.innerHTML = `ERROR`;
+            }
+            resultado = nthroot(n1, n2);
+            if ((resultado-Math.ceil(resultado))<0.001){
+                resultado=Math.ceil(resultado);
+            }
+        } else if (operadoresDigitados.includes("%")) {
+            resultado = (n1/100) *n2;
+        } else if (operadoresDigitados.includes("xy")) {
+            resultado = n1 ** n2;
+        }
+        resultado = resultado.toString();
+        if (resultado.length > 10) {
+            tela.classList.add("tela-erro-muitos-numeros");
+            resultado = `E${resultado.substr(0, 10)}`;
+        }
     }
-    resultado = resultado.toString();
-    if (resultado.length > 10) {
-        tela.classList.add("tela-erro-muitos-numeros");
-        resultado = `E${resultado.substr(0, 10)}`;
-    }
-    console.log(resultado.length);
+    
     tela.innerHTML = resultado;
     operadoresDigitados = []
     n1 = "";
