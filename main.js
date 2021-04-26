@@ -87,7 +87,7 @@ function resolveOperacao() {
         }
         resultado = nthroot(n1, n2);
     } else if (operadoresDigitados.includes("%")) {
-        resultado = (n1 * 100) / n2;
+        resultado = (n1/100) * n2;
     } else if (operadoresDigitados.includes("xy")) {
         resultado = n1 ** n2;
     }
