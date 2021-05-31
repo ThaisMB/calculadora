@@ -23,7 +23,7 @@ body {
 }
 
 h1 {
-    font-size: 15.4em;
+    font-size: 15em;
     margin: 0;
 }
 
@@ -104,6 +104,7 @@ button {
     border-radius: 10px;
     background: #ed5564c5;
     color: #02466be7;
+    border: 3px outset #f15161c5;
 }
 
 .faixa {

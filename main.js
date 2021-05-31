@@ -13,7 +13,6 @@ let contador = 0;
 let desligado = true;
 
 iniciar.addEventListener("click", () => {
-    //debugger;
     iniciarLigado = true;
     desligado = false;
     tela.classList.remove("tela-erro")
@@ -46,7 +45,7 @@ numeros.forEach(numero => {
             tela.innerHTML = "";
         }
 
-        if (iniciarLigado== false && n1=="" && numerosDigitados.length==0 || tela.className.includes("tela-erro") ||contador == 10){
+        if (iniciarLigado== false && n1=="" && numerosDigitados.length==0 || tela.className.includes("tela-erro") ||contador == 10 ||desligado==true){
             return
         }
 
