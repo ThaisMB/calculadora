@@ -98,14 +98,21 @@ function resolveOperacao() {
         } else if (operadoresDigitados.includes("x")) {
             resultado = n1 * n2;
         } else if (operadoresDigitados.includes("/")) {
+            if (n2==0) {
+                debugger;
+                tela.classList.add("tela-erro");
+                tela.innerHTML = "ERROR"; 
+                return
+            } 
             resultado = n1 / n2;
+            
         } else if (operadoresDigitados.includes("root")) {
             if (n1<0 && n2%2 == 0){
-                tela.classList.add("tela-erro")
-                tela.innerHTML = `ERROR`;
+                tela.classList.add("tela-erro");
+                tela.innerHTML ="ERROR";
             }
             resultado = nthroot(n1, n2);
-            if ((resultado-Math.ceil(resultado))<0.001){
+            if ((resultado-Math.ceil(resultado))<0.000000000000000001){
                 resultado=Math.ceil(resultado);
             }
         } else if (operadoresDigitados.includes("%")) {

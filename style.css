@@ -72,10 +72,10 @@ h1::before, h1::after {
 }
 
 .tela-erro {
-    font-size: 20px;
+    font-size: 32px;
     font-weight: bold;
-    margin-top: 18px;
-    padding:10px;
+    margin-top: 2px;
+    padding:1px;
 }
 
 .tela-erro-muitos-numeros::first-letter {
